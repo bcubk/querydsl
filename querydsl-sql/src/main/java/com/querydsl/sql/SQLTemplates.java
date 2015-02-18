@@ -26,14 +26,13 @@ import com.google.common.base.CharMatcher;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.mysema.commons.lang.Pair;
 import com.querydsl.core.JoinType;
 import com.querydsl.core.QueryException;
 import com.querydsl.core.QueryFlag.Position;
 import com.querydsl.core.QueryMetadata;
 import com.querydsl.core.QueryModifiers;
-import com.querydsl.sql.types.Type;
 import com.querydsl.core.types.*;
+import com.querydsl.sql.types.Type;
 
 /**
  * SQLTemplates extends Templates to provides SQL specific extensions
@@ -781,23 +780,23 @@ public class SQLTemplates extends Templates {
         return nullsLast;
     }
 
-    public boolean isCountViaAnalytics() {
+    public final boolean isCountViaAnalytics() {
         return countViaAnalytics;
     }
 
-    public boolean isWrapSelectParameters() {
+    public final boolean isWrapSelectParameters() {
         return wrapSelectParameters;
     }
 
-    public boolean isArraysSupported() {
+    public final boolean isArraysSupported() {
         return arraysSupported;
     }
 
-    public int getListMaxSize() {
+    public final int getListMaxSize() {
         return listMaxSize;
     }
 
-    public boolean isSupportsUnquotedReservedWordsAsIdentifier() {
+    public final boolean isSupportsUnquotedReservedWordsAsIdentifier() {
         return supportsUnquotedReservedWordsAsIdentifier;
     }
 
@@ -1174,7 +1173,7 @@ public class SQLTemplates extends Templates {
         listMaxSize = i;
     }
 
-    public void setSupportsUnquotedReservedWordsAsIdentifier(boolean b) {
+    protected void setSupportsUnquotedReservedWordsAsIdentifier(boolean b) {
         this.supportsUnquotedReservedWordsAsIdentifier = b;
     }
 
