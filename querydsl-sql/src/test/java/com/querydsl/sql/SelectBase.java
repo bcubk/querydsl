@@ -403,7 +403,7 @@ public class SelectBase extends AbstractBaseTest {
     }
 
     @Test
-    @ExcludeIn({CUBRID, POSTGRESQL, SQLSERVER, SQLITE})
+    @ExcludeIn({CUBRID, SQLSERVER, SQLITE})
     public void Dates_Literals() {
         if (configuration.getUseLiterals()) {
             Dates();
