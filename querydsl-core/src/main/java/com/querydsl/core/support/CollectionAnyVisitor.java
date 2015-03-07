@@ -110,7 +110,7 @@ public class CollectionAnyVisitor implements Visitor<Expression<?>,Context> {
             Path<?> parent = (Path<?>) expr.getMetadata().getParent().accept(this, context);
             expr = new PathImpl<Object>(expr.getType(), PathMetadataFactory.forCollectionAny(parent));
             EntityPath<?> replacement = new EntityPathBase<Object>(expr.getType(),
-                    ExpressionUtils.createRootVariable(expr));
+                    ExpressionUtils.createRootVariable(expr, Math.abs(expr.hashCode())));
             context.add(expr, replacement);
             return replacement;
 

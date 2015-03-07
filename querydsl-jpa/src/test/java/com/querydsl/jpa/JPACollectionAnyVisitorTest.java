@@ -13,17 +13,20 @@
  */
 package com.querydsl.jpa;
 
-import com.querydsl.jpa.domain.JobFunction;
-import com.querydsl.jpa.domain.QCat;
-import com.querydsl.jpa.domain.QDomesticCat;
-import com.querydsl.jpa.domain.QEmployee;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
 import com.querydsl.core.support.Context;
 import com.querydsl.core.types.ConstantImpl;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.TemplateExpressionImpl;
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
+import com.querydsl.jpa.domain.JobFunction;
+import com.querydsl.jpa.domain.QCat;
+import com.querydsl.jpa.domain.QDomesticCat;
+import com.querydsl.jpa.domain.QEmployee;
 
 
 public class JPACollectionAnyVisitorTest {
@@ -46,6 +49,7 @@ public class JPACollectionAnyVisitorTest {
         assertMatches("exists \\(select 1\n" +
                 "from cat.kittens as cat_kittens.*\n" +
                 "where cat_kittens.*\\.name = \\?1\\)", serialize(predicate));
+        assertEquals(serialize(predicate), serialize(predicate));
     }
 
     @Test
@@ -56,6 +60,7 @@ public class JPACollectionAnyVisitorTest {
         	"from Employee employee.*\n" +
         	"  inner join employee.*.jobFunctions as employee_jobFunctions.*\n" +
         	"where employee.* = employee and employee_jobFunctions.* = \\?1\\)", serialize(predicate));
+        assertEquals(serialize(predicate), serialize(predicate));
     }
 
     @Test
@@ -64,6 +69,7 @@ public class JPACollectionAnyVisitorTest {
         assertMatches("exists \\(select 1\n"+
                 "from cat.kittens as cat_kittens.*\n" +
                 "where substring\\(cat_kittens.*\\.name,2\\) = \\?1\\)", serialize(predicate));
+        assertEquals(serialize(predicate), serialize(predicate));
     }
 
     @Test
@@ -74,6 +80,7 @@ public class JPACollectionAnyVisitorTest {
                 "where cat_kittens.*\\.name = \\?1\\) and exists \\(select 1\n" +
                 "from cat.kittens as cat_kittens.*\n" +
                 "where cat_kittens.*\\.bodyWeight > \\?2\\)", serialize(predicate));
+        assertEquals(serialize(predicate), serialize(predicate));
     }
 
     @Test
@@ -83,6 +90,7 @@ public class JPACollectionAnyVisitorTest {
         assertMatches("exists \\(select 1\n" +
                 "from cat.kittens as cat_kittens.*\n" +
                 "where cat_kittens.*\\.name = \\?1\\)", serialize(templateExpr));
+        assertEquals(serialize(templateExpr), serialize(templateExpr));
     }
 
     @Test
@@ -98,6 +106,7 @@ public class JPACollectionAnyVisitorTest {
         assertMatches("exists \\(select 1\n" +
             "from cat.kittens as cat_kittens.*\n" +
             "where cat_kittens.*\\.name = \\?1\\)", serialize(predicate));
+        assertEquals(serialize(predicate), serialize(predicate));
     }
 
     private String serialize(Expression<?> expression) {
