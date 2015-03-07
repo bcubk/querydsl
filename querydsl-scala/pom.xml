@@ -204,6 +204,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
             <argLine>-Xss2m</argLine>
+            <printSummary>true</printSummary>
         </configuration>                
       </plugin>      
       
